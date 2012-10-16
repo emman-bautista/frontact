@@ -4,6 +4,7 @@ pages = {
 		title: "Home",
 		component: "home.html",
 		wrapper: "#content",
+		isDefault: true,
 		onLoad : null,
 		onError : null
 	},
@@ -11,6 +12,7 @@ pages = {
 		title: "Portfolio",
 		component: "portfolio.html",
 		wrapper: "#content",
+		isDefault: false,
 		onLoad : null,
 		onError : null,
 	},
@@ -18,6 +20,7 @@ pages = {
 		title: "Contact",
 		component: "contact.html",
 		wrapper: "#content",
+		isDefault: false,
 		onLoad : null,
 		onError : null
 	}	
@@ -29,18 +32,22 @@ components = {
 		title: "Nav",
 		component: "nav.html",
 		wrapper: "body",
-		onLoad : null,
+		onLoad : function(response){
+			console.log(response);
+			$("ul.nav li a").live("click", function(e){
+				e.preventDefault();
+				app.getPage($(this).attr("data-link-page"));
+			});
+			$("a.brand").live("click", function(e){
+				e.preventDefault();
+				app.getPage("home");
+			});
+		},
 		onError : null
 	},
 
 };
 
 $(function(){
-	
 	app.init(pages, components);
-	
-	$("ul.nav li a").live("click", function(e){
-		e.preventDefault();
-		app.getPage($(this).attr("data-link-page"));
-	});
 });
