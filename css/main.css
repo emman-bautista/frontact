@@ -1,3 +1,36 @@
-#content {
-	margin-top: 60px;
+#body{
+    width: 960px;
+margin: 0 auto;
+    position: relative;
 }
+#content {
+    
+    position: relative;
+}
+
+#content div:first-child{
+    position: absolute;
+    margin-top:100px;
+}
+
+#home_wrapper {
+    width: 800px;
+    height: 400px;
+    background-color: #f00;
+}
+
+#contact_wrapper {
+    width: 800px;
+    height: 400px;
+    background-color: #0f0;
+}
+
+
+#portfolio_wrapper {
+    width: 800px;
+    height: 400px;
+    background-color: #00f;
+}
+
+
+
