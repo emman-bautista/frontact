@@ -50,14 +50,15 @@ components = {
 
 $(function(){
     
-   /* app.beforeTransition = function(){
-        $(app.currentPage).animate({
-            opacity:0
-        }, function(){
-            
-        })
-    };*/
+    app.beforeTransition = function(page){
         
-    
+        $(pages[app.currentPage].wrapper).find("div:first-child").animate({
+            opacity:0
+        }, 300, function(){
+            $(pages[app.currentPage].wrapper).empty();
+            $(page).css({opacity:0, left:100}).appendTo($(pages[app.currentPage].wrapper)).animate({opacity:1, left:0}, 300);
+        })
+    };
+        
     app.init(pages, components);
 });

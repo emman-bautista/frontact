@@ -4,11 +4,14 @@ app = {
     currentPage : null,
     components : null,
     preload : false,
-    transition: 'fade',
+    transition: 'fade',//slideleft, slideright, slideup, slidedown, bounce
+    ease: 'in',
     working: false,
     beforeTransition: null,
     afterTransition: null,
-    
+    applyTransition: function(page, callback){
+        
+    },
     initComponents : function(){
         for(var comp in this.components){
             var component = components[comp];
