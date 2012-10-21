@@ -1,16 +1,41 @@
 app = {
     _app: this,
     pages : null,
+    page : null,
     currentPage : null,
     components : null,
     preload : false,
     transition: 'fade',//slideleft, slideright, slideup, slidedown, bounce
     ease: 'in',
     working: false,
-    beforeTransition: null,
-    afterTransition: null,
-    applyTransition: function(page, callback){
+    beforeTransition: function(page, callback){
+        $(page).animate({opacity:0}, 300, callback);  
+    },
+    afterTransition: function(page, callback){
         
+        $(page).animate({opacity:1}, 300, callback);  
+    },
+    applyBeforeTransition: function(callback){
+         
+        this.beforeTransition($(this.page.wrapper).find("div:first-child"), callback);
+    },
+    applyAfterTransition : function(callback){
+        this.afterTransition($(this.page.wrapper).find("div:first-child"), callback);  
+    },
+    applyTransition: function(response){
+        var _app = this;
+            this.applyBeforeTransition(function(){
+            $(_app.page.wrapper).empty();
+            $(response).css({opacity:0}).appendTo($(_app.page.wrapper));
+            if(_app.page.onLoad != null){
+                _app.page.onLoad.apply(this, arguments); 
+            }
+            $(response).animate({opacity:0}, 100, _app.applyAfterTransition(function(){
+                _app.afterTransition(response);
+            }));
+            
+        });
+        //$(page).animate({opacity:1}, 300, callback); 
     },
     initComponents : function(){
         for(var comp in this.components){
@@ -33,22 +58,17 @@ app = {
     },
 
     getPage : function(name){
-        page = this.pages[name];
+        this.page = this.pages[name];
+        
         var _app = this;
-        $.get("/components/" + page.component, function(response){
+        $.get("/components/" + this.page.component, function(response){
             if(response){   
-                   if(_app.beforeTransition != null){
-                        _app.beforeTransition.apply(this, arguments);
-                   }else{
-                        $(page.wrapper).empty();
-                        $(response).appendTo($(page.wrapper));
-                   }
-                   
+                _app.applyTransition(response);
             }
         }, "html").error(function(error){
-            $(page.wrapper).empty().append("Error loading the page.");
-            if(page.onError!=null){
-                page.onError.apply(this, arguments);
+            $(this.page.wrapper).empty().append("Error loading the page.");
+            if(this.page.onError != null){
+                this.page.onError.apply(this, arguments);
             }
         });
     },

@@ -50,15 +50,17 @@ components = {
 
 $(function(){
     
-    app.beforeTransition = function(page){
-        
-        $(pages[app.currentPage].wrapper).find("div:first-child").animate({
-            opacity:0
-        }, 300, function(){
-            $(pages[app.currentPage].wrapper).empty();
-            $(page).css({opacity:0, left:100}).appendTo($(pages[app.currentPage].wrapper)).animate({opacity:1, left:0}, 300);
-        })
+    app.beforeTransition = function(page, callback){
+        $(page).transition({
+            opacity:0, left:-100
+        }, 300, callback);
     };
+    app.afterTransition = function(page, callback){
+        $(page).css({left:100}).transition({
+            opacity:1, left:0
+        }, 300, callback);
+    };
+    
         
     app.init(pages, components);
 });
