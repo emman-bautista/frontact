@@ -8,6 +8,7 @@ app = {
     transition: 'fade',//slideleft, slideright, slideup, slidedown, bounce
     ease: 'in',
     working: false,
+    complete: false,
     beforeTransition: function(page, callback){
         $(page).animate({opacity:0}, 300, callback);  
     },
@@ -25,23 +26,28 @@ app = {
     applyTransition: function(response){
         var _app = this;
             this.applyBeforeTransition(function(){
-            $(_app.page.wrapper).empty();
-            $(response).css({opacity:0}).appendTo($(_app.page.wrapper));
-            if(_app.page.onLoad != null){
-                _app.page.onLoad.apply(this, arguments); 
-            }
-            $(response).animate({opacity:0}, 100, _app.applyAfterTransition(function(){
-                _app.afterTransition(response);
-            }));
-            
-        });
+                $(_app.page.wrapper).empty();
+                $(response).css({opacity:0}).appendTo($(_app.page.wrapper));
+                
+                $(response).animate({opacity:0}, 100, _app.applyAfterTransition(function(){
+                    
+                    _app.complete = false;
+                    _app.afterTransition(response);
+                    if(_app.page.onLoad != null && !_app.complete){
+                        _app.page.onLoad.apply(this, arguments); 
+                       _app.complete = true;
+                    }
+                    
+                    
+                }));
+             });
         //$(page).animate({opacity:1}, 300, callback); 
     },
     initComponents : function(){
         for(var comp in this.components){
             var component = components[comp];
             this.getComponent(comp, function(response){
-                $(component.wrapper).append(response);
+                $(component.wrapper).prepend(response);
                 if(component.onLoad != null){
                     component.onLoad.apply(this, arguments);
                 }
@@ -58,11 +64,15 @@ app = {
     },
 
     getPage : function(name){
+        
+        if(this.currentPage == name) return false;
+        this.currentPage = name;
         this.page = this.pages[name];
         
         var _app = this;
         $.get("/components/" + this.page.component, function(response){
             if(response){   
+                
                 _app.applyTransition(response);
             }
         }, "html").error(function(error){
@@ -82,7 +92,7 @@ app = {
                 break;
             }
         }
-        this.currentPage = defaultPage;
+        
         this.getPage(defaultPage);
     },
 

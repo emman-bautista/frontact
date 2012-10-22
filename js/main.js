@@ -5,7 +5,9 @@ pages = {
         component: "home.html",
         wrapper: "#content",
         isDefault: true,
-        onLoad : null,
+        onLoad : function(){
+           $('.trans').transition({left:100, opacity:0.5, width:100, height:100}, 500, 'in-out');
+        },
         onError : null
     },
     "portfolio" : {
@@ -49,18 +51,15 @@ components = {
 };
 
 $(function(){
-    
     app.beforeTransition = function(page, callback){
         $(page).transition({
             opacity:0, left:-100
-        }, 300, callback);
+        }, 500, callback);
     };
     app.afterTransition = function(page, callback){
         $(page).css({left:100}).transition({
             opacity:1, left:0
         }, 300, callback);
     };
-    
-        
     app.init(pages, components);
 });
