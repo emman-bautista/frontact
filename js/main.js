@@ -5,9 +5,7 @@ pages = {
         component: "home.html",
         wrapper: "#content",
         isDefault: true,
-        onLoad : function(){
-           $('.trans').transition({left:100, opacity:0.5, width:100, height:100}, 500, 'in-out');
-        },
+        onLoad : null,
         onError : null
     },
     "portfolio" : {
@@ -30,6 +28,21 @@ pages = {
 
 /*Prepare components to add on your page*/
 components = {
+    "sidemenu" : {
+        title: "Side",
+        component: "sidemenu.html",
+        wrapper: "#hidden_menu",
+        onLoad : function(){
+            $("#body").live('click', function(){
+                    $("#body").transition({left: 0});
+            });
+            
+            $("#sidemenu a").live('click', function(){
+                $("#body").transition({left: 60});
+            });
+        },
+        onError : null
+    },
     "nav" : {
         title: "Nav",
         component: "nav.html",
@@ -48,18 +61,27 @@ components = {
         },
         onError : null
     }
+    
 };
 
 $(function(){
     app.beforeTransition = function(page, callback){
-        $(page).transition({
-            opacity:0, left:-100
-        }, 500, callback);
+        $("#hidden_menu").transition({opacity:0, left: 368}, 100, function(){
+            $(page).transition({
+                opacity:0, left:-100
+            }, 300, 'out' , callback);
+        });
+        
     };
+    
     app.afterTransition = function(page, callback){
-        $(page).css({left:100}).transition({
+        
+        $(page).css({left:-100}).transition({
             opacity:1, left:0
-        }, 300, callback);
+        }, 300, 'out' , callback);
+        $("#hidden_menu").transition({left:358, opacity: 1, delay:100});
+       
     };
+    
     app.init(pages, components);
 });

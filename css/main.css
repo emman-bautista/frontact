@@ -1,35 +1,24 @@
 #body{
-    width: 960px;   
+    width: 1170px;
     margin: 0 auto;
     position: relative;
 }
 #content {
-    
+    margin-top: 60px;
     position: relative;
 }
 
 #content div:first-child{
     position: relative;
+    width: 100%;
+    height: 500px;
+    border: solid 1px #ccc;
+    background: none #fff;
     
 }
 
-#home_wrapper {
-    width: 800px;
-    height: 400px;
-    background-color: #f00;
-}
-
-#contact_wrapper {
-    width: 800px;
-    height: 400px;
-    background-color: #0f0;
-}
-
-
-#portfolio_wrapper {
-    width: 800px;
-    height: 400px;
-    background-color: #00f;
+p, h1 {
+    margin:10px;
 }
 
 .transholder {
@@ -43,8 +32,52 @@
     background-color: #000;
 }
 
-@media (min-width: 968px) {
-    #content div:first-child{
-        margin-top: 60px;
+#hidden_menu{
+    position: absolute;
+    left: 358px;
+    
+}
+
+#hidden_menu ul {
+    margin:0; padding: 2px;
+    background: none #ccc;
+    
+}
+
+#hidden_menu ul li{
+    width:300px;
+    list-style: none;
+}
+
+#hidden_menu ul li a{
+    
+    text-indent: 20px;
+    display: block;
+   
+}
+
+@media (max-width: 1170px) {
+    #body {
+        width: 98%;
+    }
+    
+    #hidden_menu{
+ 
+    left: 0px;
+    
     }
 }
+
+@media (max-width: 960px) {
+    
+    #body {
+        width: 98%;
+    }
+    
+    
+    #hidden_menu{
+        position: absolute;
+        left: 300px;
+    }
+}
+
