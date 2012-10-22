@@ -1,8 +1,14 @@
 This framework is help user to easily create a configurable frontend based on HTML, JS, JSON, Twitter Bootstrap and Jquery.
 
 How to use:
+1. Dependencies
+Import all the script:
+How to implement?
 
-1.Pages 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="js/app.js"></script>
+
+2.Pages 
 Pages object is a json object where all the html pages is indicated. This is the main content for your page.
 
 How to implement?
@@ -28,7 +34,7 @@ First of all you need to have a json object called "pages":
     }	
 };
 
-2. Components:
+3. Components:
 Component object is a json object that contains all components for your page. Example, sidebars, menubar, footers.. etc. 
 Component should no be inside the Pages object. If you want to implement component iside you page then you have to code it manually
   
@@ -54,3 +60,9 @@ components = {
    ...
     
 };
+
+
+3. 
+After pages object and cmponents are created, then run type this function:
+
+ app.init(pages, components);
