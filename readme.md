@@ -3,7 +3,7 @@ This framework is help user to easily create a configurable frontend based on HT
 How to use:
 1. Dependencies
 Import all the script:
-How to implement?
+<strong>How to implement?</strong>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="js/app.js"></script>
@@ -62,7 +62,6 @@ components = {
 };
 
 
-3. 
-After pages object and cmponents are created, then run type this function:
+4. After pages object and cmponents are created, then run type this function:
 
  app.init(pages, components);
