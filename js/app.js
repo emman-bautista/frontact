@@ -21,7 +21,7 @@ app = {
         }, 300, callback);  
     },
     applyBeforeTransition: function(callback){
-         
+        $(this.page).find("*").andSelf().unbind();
         this.beforeTransition($(this.page.wrapper).find("div:first-child"), callback);
     },
     applyAfterTransition : function(callback){
@@ -80,6 +80,7 @@ app = {
                 this.page.onError.apply(this, arguments);
             }
         });
+        return true;
     },
 	
     loadDefault: function(){
