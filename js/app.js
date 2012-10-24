@@ -2,8 +2,9 @@ app = {
     _app: this,
     pages : null,
     page : null,
-    currentPage : null,
+    currentPageName : null,
     components : null,
+    defaultPageName : null,
     preload : false,
     transition: 'fade',//slideleft, slideright, slideup, slidedown, bounce
     ease: 'in',
@@ -38,6 +39,7 @@ app = {
                 opacity:0
             }, 100, _app.applyAfterTransition(function(){
                 _app.complete = false;
+                window.location.href = "#" + _app.currentPageName;
                 _app.afterTransition(response);
                 if(_app.page.onLoad != null && !_app.complete){
                     _app.page.onLoad.apply(this, arguments); 
@@ -66,8 +68,8 @@ app = {
         }, "html");  
     },
     getPage : function(name){  
-        if(this.currentPage == name) return false;
-        this.currentPage = name;
+        if(this.currentPageName == name) return false;
+        this.currentPageName = name;
         this.page = this.pages[name];
         var _app = this;
         $.get("/components/" + this.page.component, function(response){
@@ -84,16 +86,17 @@ app = {
     },
 	
     loadDefault: function(){
-        var defaultPage = "home";
+        this.defaultPageName = "";
+        
         for(var page in this.pages){
             var thispage = this.pages[page];
             if(thispage.isDefault){
-                defaultPage = page;
+                this.defaultPageName = page;
                 break;
             }
         }
         
-        this.getPage(defaultPage);
+        this.getPage( this.defaultPageName );
     },
 
     init : function(_pages, _components){
@@ -116,5 +119,19 @@ app = {
 
 $("a[data-link-page]").live("click", function(e){
     e.preventDefault();
-    app.getPage($(this).attr("data-link-page"));
+    //app.getPage($(this).attr("data-link-page"));
+    location.href="#" + $(this).attr("data-link-page")
 });
+
+window.onhashchange = function(){
+    var url = window.location.hash.replace("#", '');
+    app.getPage(url)
+}
+
+window.onload = function(){
+    var url = window.location.hash.replace("#", '');
+    if(url == ''){
+        location.href="#" +  app.defaultPageName ;
+    }
+    
+}
