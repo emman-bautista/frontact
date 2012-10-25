@@ -5,7 +5,12 @@ pages = {
         component: "home.html",
         wrapper: "#content",
         isDefault: true,
-        onLoad : null,
+        onLoad : function(){
+            elearning.init("#elearning-steps");
+            $('.menu ul li a').live('click', function(){
+               window['elearning'][$(this).data('onclick')].apply(this, arguments);
+            })
+        },
         onError : null
     },
     "portfolio" : {
@@ -28,21 +33,7 @@ pages = {
 
 /*Prepare components to add on your page*/
 components = {
-    "sidemenu" : {
-        title: "Side",
-        component: "sidemenu.html",
-        wrapper: "#hidden_menu",
-        onLoad : function(){
-            $("#body").live('click', function(){
-                    $("#body").transition({left: 0});
-            });
-            
-            $("#sidemenu a").live('click', function(){
-                $("#body").transition({left: 60});
-            });
-        },
-        onError : null
-    },
+   
     "nav" : {
         title: "Nav",
         component: "nav.html",
@@ -51,7 +42,7 @@ components = {
             $("a").live('click', function(e){
                e.preventDefault();
                $("ul.nav li a").parent("li[class=active]").removeClass("active");
-               $(this).parent('li').addClass('active');
+              // $(this).parent('li').addClass('active');
             });
             
             $("a.brand").live("click", function(e){
@@ -66,11 +57,12 @@ components = {
 
 $(function(){
     app.beforeTransition = function(page, callback){
-        $("#hidden_menu").transition({opacity:0, left: 368}, 100, function(){
-            $(page).transition({
-                opacity:0, left:-100
-            }, 300, 'out' , callback);
-        });
+      
+       
+           $(page).transition({
+            opacity:0, left:-100
+        }, 300, 'out' , callback);  
+            
         
     };
     
@@ -79,7 +71,7 @@ $(function(){
         $(page).css({left:-100}).transition({
             opacity:1, left:0
         }, 300, 'out' , callback);
-        $("#hidden_menu").transition({left:358, opacity: 1, delay:100});
+       
        
     };
     

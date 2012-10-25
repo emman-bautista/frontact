@@ -83,3 +83,12 @@ utils = {
 }
 
 
+$('.elearning_wrapper .next').live('click', function(e){
+    e.preventDefault();
+    
+});
+
+$('.elearning_wrapper .previous').live('click', function(e){
+    e.preventDefault();
+    
+});

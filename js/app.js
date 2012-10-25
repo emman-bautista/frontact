@@ -16,17 +16,16 @@ app = {
         }, 300, callback);  
     },
     afterTransition: function(page, callback){
-        
         $(page).animate({
             opacity:1
         }, 300, callback);  
     },
     applyBeforeTransition: function(callback){
         $(this.page).find("*").andSelf().unbind();
-        this.beforeTransition($(this.page.wrapper).find("div:first-child"), callback);
+        this.beforeTransition($(this.page.wrapper).find("div.wrapper:first-child"), callback);
     },
     applyAfterTransition : function(callback){
-        this.afterTransition($(this.page.wrapper).find("div:first-child"), callback);  
+        this.afterTransition($(this.page.wrapper).find("div.wrapper:first-child"), callback);  
     },
     applyTransition: function(response){
         var _app = this;
@@ -39,15 +38,17 @@ app = {
                 opacity:0
             }, 100, _app.applyAfterTransition(function(){
                 _app.complete = false;
-                window.location.href = "#" + _app.currentPageName;
-                _app.afterTransition(response);
-                if(_app.page.onLoad != null && !_app.complete){
-                    _app.page.onLoad.apply(this, arguments); 
-                    _app.complete = true;
-                }
+                //window.location.href = "#" + _app.currentPageName;
+                _app.afterTransition(response, function(){
+                    if(_app.page.onLoad != null && !_app.complete){
+                        _app.page.onLoad.apply(this, arguments); 
+                        _app.complete = true;
+                    }
+                });
+                
             }));
         });
-    //$(page).animate({opacity:1}, 300, callback); 
+    //$(page).animate({opacity:1}, 300, callback);
     },
     initComponents : function(){
         var _app = this;
@@ -55,7 +56,7 @@ app = {
             this.getComponent(comp);
         }
     },
-	
+    
     getComponent : function(comp){
         var component = this.components[comp];
         $.get("/components/" + component.component, function(response){
@@ -72,7 +73,7 @@ app = {
         this.currentPageName = name;
         this.page = this.pages[name];
         var _app = this;
-        $.get("/components/" + this.page.component, function(response){
+        $.get("/pages/" + this.page.component, function(response){
             if(response){ 
                 _app.applyTransition(response);
             }
@@ -98,7 +99,7 @@ app = {
         
         this.getPage( this.defaultPageName );
     },
-
+    
     init : function(_pages, _components){
         this.components = _components;
         this.pages = _pages;
@@ -119,11 +120,11 @@ app = {
 
 $("a[data-link-page]").live("click", function(e){
     e.preventDefault();
-    //app.getPage($(this).attr("data-link-page"));
-    location.href="#" + $(this).attr("data-link-page")
+    app.getPage($(this).attr("data-link-page"));
+    //location.href="#" + $(this).attr("data-link-page")
 });
 
-window.onhashchange = function(){
+/*window.onhashchange = function(){
     var url = window.location.hash.replace("#", '');
     app.getPage(url)
 }
@@ -134,4 +135,4 @@ window.onload = function(){
         location.href="#" +  app.defaultPageName ;
     }
     
-}
+}*/

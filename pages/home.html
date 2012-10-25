@@ -1,8 +1,61 @@
-<div id="home_wrapper">
-    <h1>Home</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in est at lacus blandit pharetra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In id lorem non augue pellentesque porta quis ullamcorper eros. Nam ultrices erat eget arcu iaculis scelerisque feugiat risus hendrerit. Aenean eget neque quis magna laoreet volutpat. Mauris porta lacus quis leo vestibulum pellentesque. Cras nec aliquam lorem. Nam hendrerit condimentum vestibulum. Mauris hendrerit facilisis ligula ac volutpat.
-
-Aliquam at dolor sit amet libero molestie egestas sed non enim. Vivamus eros lectus, commodo nec egestas eget, dignissim sit amet magna. Maecenas posuere scelerisque velit, ut pretium lectus varius vel. Aenean mi quam, iaculis vitae ullamcorper in, varius id leo. Aenean et nibh nisl. Nulla facilisi. Aliquam quam ipsum, sollicitudin eget elementum interdum, eleifend non quam. Praesent viverra elementum erat ac porttitor. Maecenas adipiscing felis vitae velit ultrices quis tincidunt risus eleifend. Maecenas ac arcu eget est dictum imperdiet at ultrices ante. Morbi sodales ultricies commodo. Etiam rutrum pretium ornare.
-    </p>
+<div id="home_wrapper" class="wrapper">
+    <div class="elearning_wrapper">
+        <div class="header title">Home</div>
+        <div class="content">
+            <div class="elearning-menu">
+                <ul class="menu ">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" data-onclick="loadSomething">Action</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li class="divider"></li>
+                          <li><a href="#">Separated link</a></li>
+                        </ul>
+                      </li>
+                </ul>
+            </div>
+                <ul class="elearning-steps" id="elearning-steps">
+                    <li class="step step-1 active" data-complete-shownext ="false">
+                        <div class="section-wrapper left">
+                            <div class="section"  data-initial-style='{"opacity":"0", "webkitTransform":"translateX(-250px)","display":"block"}' data-onload-transition='{"opacity":"1", "left":"0", "x":"0px"}' data-initial-visibile="false"><p>
+                                Suspendisse sed nisi quam. Aenean vel dolor arcu. Pellentesque in purus magna. 
+                                Sed dignissim erat vel erat volutpat mollis ut eu metus. 
+                                Suspendisse tempor mi sit amet nulla tristique accumsan.
+                                Mauris vitae nisi quam. Morbi ultricies laoreet arcu, et ultricies nisi ultrices ac. Suspendisse potenti. 
+                         </p>
+                         </div>
+                        </div>
+                    </li>
+                    <li class="step step-2" data-complete-shownext ="false" >
+                        
+                        <div class="section-wrapper left">
+                                <div class="section" data-initial-style='{"opacity":"0", "display":"block", "webkitTransform":"rotateY(90deg)", "transformOrigin":"0px 0px"}' 
+                                    data-onload-transition='{"opacity":"1", "x": "0px", "perspective":"100px","rotateY":"0deg"}' data-initial-visibile="false" >
+                                    <p>
+                                        No Content<br />
+                                        Suspendisse sed nisi quam. Aenean vel dolor arcu. Pellentesque in purus magna. 
+                                            Sed dignissim erat vel erat volutpat mollis ut eu metus. 
+                                            Suspendisse tempor mi sit amet nulla tristique accumsan.
+                                            Mauris vitae nisi quam. Morbi ultricies laoreet arcu, et ultricies nisi ultrices ac. Suspendisse potenti. 
+                                    </p>
+                            </div>
+                         </div>
+                    </li>
+                    <li class="step step-3" data-complete-shownext ="false">
+                        <h2>Step 3</h2>
+                    </li>
+                    <li class="step step-4" data-complete-shownext ="true">
+                        <h2>Step 4</h2>
+                    </li>
+                </ul>
+        </div>
+        <div class="footer">
+             <div class="buttongroup">
+                <button class="button left previous">Previous</button>
+                <button class="button right next">Next</button>
+             </div>
+        </div>
+    </div>
 </div>
