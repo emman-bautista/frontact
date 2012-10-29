@@ -5,53 +5,86 @@
             <div class="elearning-menu">
                 <ul class="menu ">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                          <li><a href="#" data-onclick="loadSomething">Action</a></li>
-                          <li><a href="#">Another action</a></li>
-                          <li><a href="#">Something else here</a></li>
+                        <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">Menu <b class="caret"></b></a>
+                        <ul class="dropdown-menu pull-right">
+                          <li><a href="#" data-onclick="loadSomething">Step 1</a></li>
+                          <li><a href="#" data-onclick="loadSomething">Step 2</a></li>
+                          <li><a href="#" data-onclick="loadSomething">Step 3</a></li>
                           <li class="divider"></li>
-                          <li><a href="#">Separated link</a></li>
+                          <li><a href="#" data-onclick="loadSomething">End</a></li>
                         </ul>
                       </li>
                 </ul>
             </div>
                 <ul class="elearning-steps" id="elearning-steps">
-                    <li class="step step-1 active" data-complete-shownext ="false">
+                    <li class="step-1" data-complete-shownext ="false">
                         <div class="section-wrapper left">
-                            <div class="section"  data-initial-style='{"opacity":"0", "webkitTransform":"translateX(-250px)","display":"block"}' data-onload-transition='{"opacity":"1", "left":"0", "x":"0px"}' data-initial-visibile="false"><p>
+                            <div class="section"  data-loaded-callback="loadSomething" data-initial-style='{"opacity":"0", "webkitTransform":"translateX(-250px)","display":"block"}' data-onload-transition='{"easing":"snap","opacity":"1", "left":"0", "x":"0", "y":"0"}' data-initial-visibile="false"><p>
                                 Suspendisse sed nisi quam. Aenean vel dolor arcu. Pellentesque in purus magna. 
                                 Sed dignissim erat vel erat volutpat mollis ut eu metus. 
                                 Suspendisse tempor mi sit amet nulla tristique accumsan.
                                 Mauris vitae nisi quam. Morbi ultricies laoreet arcu, et ultricies nisi ultrices ac. Suspendisse potenti. 
                          </p>
                          </div>
+                         <div class="section"  data-initial-style='{"opacity":"0", "webkitTransform":"translateX(250px)","display":"block"}' data-onload-transition='{"perspective":"100px","rotate":"360", "easing":"snap","opacity":"1","x":"330", "delay":"500", "duration":"500ms"}' data-transition-delay="1" data-initial-visibile="false"><p>
+                                Suspendisse sed nisi quam. Aenean vel dolor arcu. Pellentesque in purus magna. 
+                                Sed dignissim erat vel erat volutpat mollis ut eu metus. 
+                                Suspendisse tempor mi sit amet nulla tristique accumsan.
+                                Mauris vitae nisi quam. Morbi ultricies laoreet arcu, et ultricies nisi ultrices ac. Suspendisse potenti. 
+                         </p>
+                         </div>
+                         <div class="section"  data-loaded-callback="loadLast" data-initial-style='{"opacity":"0", "webkitTransform":"translateX(250px)","display":"block"}' data-onload-transition='{"easing":"out","opacity":"1","x":"400","y":"-300", "delay":"1000", "duration":"500ms", "rotateX":"365", "perspective":"100px"}' data-transition-delay="1" data-initial-visibile="false"><p>
+                               
+                                 This is the last one!
+                         </p>
+                         </div>
                         </div>
                     </li>
-                    <li class="step step-2" data-complete-shownext ="false" >
+                    <li class="step-2" data-complete-shownext ="false" >
                         
                         <div class="section-wrapper left">
                                 <div class="section" data-initial-style='{"opacity":"0", "display":"block", "webkitTransform":"rotateY(90deg)", "transformOrigin":"0px 0px"}' 
-                                    data-onload-transition='{"opacity":"1", "x": "0px", "perspective":"100px","rotateY":"0deg"}' data-initial-visibile="false" >
+                                    data-onload-transition='{"opacity":"1", "x": "0px", "perspective":"100px","rotateY":"0deg", "delay":"250","easing":"in-out"}' data-initial-visibile="false" >
                                     <p>
                                         No Content<br />
                                         Suspendisse sed nisi quam. Aenean vel dolor arcu. Pellentesque in purus magna. 
-                                            Sed dignissim erat vel erat volutpat mollis ut eu metus. 
+                                           
+                                    </p>
+                                </div>
+                            <div class="section" data-initial-style='{"opacity":"0", "display":"block", "webkitTransform":"rotateY(90deg)", "transformOrigin":"0px 0px"}' 
+                                    data-onload-transition='{"opacity":"1", "x": "0px", "perspective":"100px","rotateY":"0deg", "delay":"500", "easing":"in-out"}' data-initial-visibile="false" >
+                                    <p>
+                                        No Content<br />
+                                       
                                             Suspendisse tempor mi sit amet nulla tristique accumsan.
                                             Mauris vitae nisi quam. Morbi ultricies laoreet arcu, et ultricies nisi ultrices ac. Suspendisse potenti. 
                                     </p>
                             </div>
+                            <div class="section" data-initial-style='{"opacity":"0", "display":"block", "webkitTransform":"rotateY(90deg)", "transformOrigin":"0px 0px"}' 
+                                    data-onload-transition='{"opacity":"1", "x": "0px", "perspective":"100px","rotateY":"0deg", "delay":"1000", "easing":"in-out"}' data-initial-visibile="false" >
+                                    <p>
+                                        No Content<br />
+                                       
+                                            Mauris vitae nisi quam. Morbi ultricies laoreet arcu, et ultricies nisi ultrices ac. Suspendisse potenti. 
+                                    </p>
+                            </div>
+                            <div class="section" data-loaded-callback="moveDown" data-initial-style='{"opacity":"0", "display":"block", "webkitTransform":"translateY(-800px) translateX(360px)", "transformOrigin":"0px 0px"}' 
+                                data-onload-transition='{"opacity":"0.5", "x": "360px", "y":"-300px", "width":"480px", "height":"270px", "duration":"500", "easing":"snap", "delay":"1500"}' data-initial-visibile="false" >
+                                <video id="videoPlayer_html5_api" class="vjs-tech" preload="none" controls="controls" width="480" height="270">
+                                    <source src="http://www.one-partnerled.com/html5/interactiveVideo/videos/2-1.mp4" type="video/mp4">
+                                </video>
+                            </div>
                          </div>
                     </li>
-                    <li class="step step-3" data-complete-shownext ="false">
+                    <li class="step-3" data-complete-shownext ="false">
                         <h2>Step 3</h2>
                     </li>
-                    <li class="step step-4" data-complete-shownext ="true">
+                    <li class="step-4" data-complete-shownext ="true">
                         <h2>Step 4</h2>
                     </li>
                 </ul>
         </div>
-        <div class="footer">
+        <div class="footer" >
              <div class="buttongroup">
                 <button class="button left previous">Previous</button>
                 <button class="button right next">Next</button>

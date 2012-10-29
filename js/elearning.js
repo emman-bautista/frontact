@@ -1,21 +1,45 @@
-elearning = {
-    wrapper:"#elearning-steps",
-    _elearning: this,
-    buttons:[
+elearning = function(_wrapper){
+    this.buttons = [
         {
+            _parent: this,
             element: ".previous",
-            click: function(){
-                elearning.showPrevious();
+            click: function(e){
+                this._parent.showPrevious();
             }
         },{
+            _parent: this,
             element: ".next",
-            click: function(){
-                elearning.showNext();
+            click: function(e){
+                this._parent.showNext();
             }
         }
-    ],
-    
-    toggleButton: function(type){
+    ];
+    this.originalState = null;
+    this.wrapper = _wrapper;
+    this.init = function(){
+        
+       $(this.wrapper).find('li').addClass('step').css({display:'none'});
+       
+       var _this = this;
+        
+        $(this.buttons).each(function(i, e){
+
+            $(e.element).off();
+            $(e.element).on('click', function(){
+                    e.click.call(e, arguments);
+            });
+        });
+        
+        $('.menu ul li a').live('click', function(){
+            window['elearning'][$(this).data('onclick')].apply(this, arguments);
+        });
+        
+        if( this.originalState  == null){
+             this.originalState = $(this.wrapper).clone(true);
+        }
+        this.showStep(0);
+    };
+    this.toggleButton = function(type){
         var buttonObject = null;
         switch(type){
             case "previous":
@@ -25,7 +49,6 @@ elearning = {
                     buttonObject = this.buttons['next'].element;
                 break;
             default:
-                        
         }
         
         if($(buttonObject).css('display') == 'none'){
@@ -33,56 +56,62 @@ elearning = {
         }else{
             $(buttonObject).hide();
         }
-    },
-    init: function(wrapper){
-        if(arguments.length > 0){
-            this.wrapper = wrapper;
+    };
+    this.showStep = function(step){
+        if(step < 0) return false;
+        var _this = this;
+        var  el = $(this.wrapper).find('.step').get(step);
+        var current = $(this.wrapper).find('.active');
+       
+        if($(current).length > 0){
+            $(current).find("*").die();
+            
+            $(current).find('.vjs-tech').each(function(){
+                  this.pause();  
+            });
+
+            var originalEl = $(this.originalState).find('.step').get($(current).index());
+            var cloned = $(originalEl).clone();
+            $(this.wrapper).find('.active').replaceWith($(cloned));
         }
         
+         $(this.wrapper).find('.step [data-initial-visibile*=false]').fadeOut();
+         if($(current).length == 0){      
+             _this.processStep(el);
+         }
         
-        $(this.buttons).each(function(i, e){
-            $(e.element).live('click', function(){
-                e.click.apply(this, arguments);
-            });
+        $(current).removeClass('active').fadeOut(300, function(){
+           _this.processStep(el);
         });
         
+        return true;
+    };
+    this.showNext = function(){
+        var el = $(this.wrapper).find('.active').next();
+        this.showStep($(el).index());
+    };
+    this.showPrevious = function(){
+        var el = $(this.wrapper).find('.active').prev();
         
-    },
-    showStep: function(step){
-       var  el = $(this.wrapper).find('.step').get(step);
+        return this.showStep($(el).index());
         
-        $(this.wrapper).find('.step [data-initial-visibile*=false]').css({display:'none'});
-        $(this.wrapper).find('.step').removeClass('active').fadeOut(300);
-            $(el).addClass('active').fadeIn(500, function(){
-                    elearning.processStep(el);
-            });
-    },
-    showNext:function(){
-        var index = $(this.wrapper).find('.active').index();
-        var size = $(this.wrapper).find('.step').length;
-        if(index < size-1){
-           index++;
-        }
-        this.showStep(index);
-    },
-    showPrevious:function(){
-        var index = $(this.wrapper).find('.active').index();
-        var size = $(this.wrapper).find('.step').length;
-        if(index > 0){
-           index--;
-        }
-        this.showStep(index);
-    },
-   processStep : function(el){
-        $(this.wrapper).find('.active [data-onload-transition]').each(function(i,e){
+    };
+   this.processStep = function(el){
+      
+       $(el).addClass('active').fadeIn(300);
+        $(el).find('[data-onload-transition]').each(function(i,e){
             var loadedStyle = $(this).data("onload-transition");
-           
             var initialStyle =$(this).data("initial-style");
-            $(this).css(initialStyle).transition(loadedStyle);
-           
+            $(this).css(initialStyle).transition(loadedStyle, window['elearning'][$(e).data('loaded-callback')]);    
         });
-    },
-    loadSomething : function(){
-        alert("Test");
-    } 
+    };
+    
+    this.reset = function(){
+        var parent = $(this.wrapper).parent();
+        $(parent).empty().append(this.originalState);
+        this.init();
+    }
+    
+    
+    this.init();
 }

@@ -1,0 +1,75 @@
+/* 
+    Document   : elearning
+    Created on : Oct 29, 2012, 10:05:28 AM
+    Author     : emmanuel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* E-Learning wrappers*/
+
+.elearning_wrapper {
+   overflow: hidden;
+}
+
+.elearning_wrapper  .elearning-steps {
+    margin:0;
+    padding: 0; 
+    width:100%;
+}
+
+.elearning_wrapper .elearning-steps li{
+    list-style: none;
+    width: 100%;
+    height: 420px;
+    float:left;
+    display: none;
+}
+
+.elearning_wrapper header {
+    height: 32px;
+    float:left;
+}
+
+.elearning_wrapper .content{
+    
+}
+
+.elearning_wrapper .footer{
+    position: absolute;
+    bottom:0;
+    width:100%;
+}
+
+.elearning_wrapper .footer .buttongroup{
+    position: relative;
+}
+
+.previous {
+    float: left;
+    margin: 4px;
+}
+
+.next {
+    float: right;
+    margin: 4px;
+}
+
+.section{
+    padding-top:6px;
+    padding-bottom:6px;
+    width:300px;
+    height: 100%;
+    background-color: #efefef;
+}
+
+.section p{
+    margin: 10px;
+}
+
+[data-initial-visibile="false"]{
+    display:none;
+   
+}
+
+/* End of ELearning Wrapper */
