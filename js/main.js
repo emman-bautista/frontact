@@ -60,11 +60,12 @@ components = {
                 e.preventDefault();
                 app.getPage("home");
             });*/
-        },
+        	},
         onError : null
     }
     
 };
+
 
 $(function(){
     _app = new app(pages, components)
