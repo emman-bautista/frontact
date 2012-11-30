@@ -1,4 +1,4 @@
-app = function(_pages, _components){
+var app = function(_pages, _components){
     this.components = _components;
     this.pages = _pages;
     this.currentPageName = null;
