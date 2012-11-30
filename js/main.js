@@ -1,7 +1,8 @@
 /*Prepare pages*/
- var _app = null;
+var _app = null;
 var _elearning = null;
-pages = {
+var v = null;
+var pages = {
     "home" : {
         title: "Home",
         component: "home.html",
@@ -20,7 +21,27 @@ pages = {
             }
             _elearning = new elearning("#elearning-steps");
              /* Extend elearning by adding new functions */
-                      
+            if($("#videoPlayer_html5_api").length > 0){
+                var config = [
+                        {
+                        'on': 2,
+                        'do':function(){
+                            console.log("happend in the duration 2");
+                        }
+                        },{
+                        'on': 4,
+                        'do':function(){
+                            $(v.getVideoElement()).transit({ width: '50%', height:'50%', marginTop: '-20px' });
+                            
+                        }
+                        }   ,{
+                        'on': 6,
+                        'do':function(){
+                            $(v.getVideoElement()).transit({ width: '100%', height:'100%', marginTop: '0' });
+                        }
+                        }];
+                v = new _vid("videoPlayer_html5_api", config);
+            }
         },
         onError : null
     },
@@ -43,7 +64,7 @@ pages = {
 };
 
 /*Prepare components to add on your page*/
-components = {
+var components = {
     "nav" : {
         title: "Nav",
         component: "nav.html",

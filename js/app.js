@@ -11,7 +11,7 @@ var app = function(_pages, _components){
             $("body").append("No pages JSON defined in the application. Please follow framework guideline in creating pages.");
         }
         
-	    this.initComponents();    
+	this.initComponents();    
         
         this.loadDefault();
     };
