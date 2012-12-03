@@ -1,0 +1,61 @@
+/* 
+    Document   : draggables
+    Created on : Oct 30, 2012, 11:17:07 AM
+    Author     : emmanuel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+div.dragobjects {
+    float: left;
+    margin: 20px auto;
+    width:600px;
+    height:300px;
+}
+
+div.dragobjects  div.dragitem{
+    width: 128px;
+    height: 128px;
+    margin:10px;
+    float: left;
+    list-style: none;
+    cursor: move;
+   
+}
+
+div.basket {
+    float: left;
+    margin-bottom: 20px;
+}
+
+div#basketitem {
+    background: url(../img/shopping_basket_256.png) no-repeat top left transparent;
+    position:absolute;
+    width: 256px;
+    height: 256px;
+    float: left;
+    list-style: none;
+}
+
+
+#item2{
+    background: url(../img/mango.png) no-repeat top left transparent;
+     background-size:  128px 128px;
+}
+
+#item3{
+    background: url(../img/Tomato-icon.png) no-repeat top left transparent;
+     background-size:  128px 128px;
+}
+
+#item4{
+    background: url(../img/1351578059_Apricot.png) no-repeat top left transparent;
+     background-size:  128px 128px;
+}

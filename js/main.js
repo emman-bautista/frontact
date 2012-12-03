@@ -19,6 +19,9 @@ var pages = {
             elearning.moveDown= function(){
                 $(this).transition({opacity:1, duration:1000});
             }
+            elearning.initDraggables = function(){
+                initDraggables(".dragitem", "#basketitem");
+            }
             _elearning = new elearning("#elearning-steps");
              /* Extend elearning by adding new functions */
             if($("#videoPlayer_html5_api").length > 0){

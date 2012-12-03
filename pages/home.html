@@ -1,6 +1,6 @@
 <div id="home_wrapper" class="wrapper">
     <div class="elearning_wrapper">
-        <div class="header title">Home</div>
+     
         <div class="content">
             <div class="elearning-menu">
                 <ul class="menu ">
@@ -34,8 +34,10 @@
                          </p>
                          </div>
                          <div class="section"  data-loaded-callback="loadLast" data-initial-style='{"opacity":"0", "webkitTransform":"translateX(250px)","display":"block"}' data-onload-transition='{"easing":"out","opacity":"1","x":"400","y":"-300", "delay":"1000", "duration":"500ms", "rotateX":"365", "perspective":"100px"}' data-transition-delay="1" data-initial-visibile="false"><p>
-                               
-                                 This is the last one!
+                                Suspendisse sed nisi quam. Aenean vel dolor arcu. Pellentesque in purus magna. 
+                                Sed dignissim erat vel erat volutpat mollis ut eu metus. 
+                                Suspendisse tempor mi sit amet nulla tristique accumsan.
+                                Mauris vitae nisi quam. Morbi ultricies laoreet arcu, et ultricies nisi ultrices ac. Suspendisse potenti. 
                          </p>
                          </div>
                         </div>
@@ -77,7 +79,13 @@
                          </div>
                     </li>
                     <li class="step-3" data-complete-shownext ="false">
-                        <h2>Step 3</h2>
+                        <div class="dragobjects">
+                                <div data-initial-style='{"opacity":"0", "display":"block"}' data-onload-transition='{"opacity":"1", "delay":"500"}' data-initial-visibile="false" draggable="true" class="dragitem" id="item2" >Drag item 2</div>
+                                <div data-initial-style='{"opacity":"0", "display":"block"}' data-onload-transition='{"opacity":"1", "delay":"500"}' data-initial-visibile="false"  draggable="true" class="dragitem" id="item3" >Drag item 3</div>
+                                <div data-initial-style='{"opacity":"0", "display":"block"}' data-onload-transition='{"opacity":"1", "delay":"500"}' data-initial-visibile="false" draggable="true" class="dragitem over" id="item4" >Drag item 4</div>
+                                <div class="clear"></div>
+                                <div data-initial-style='{"opacity":"0", "display":"block"}' data-onload-transition='{"opacity":"1", "x":"500", "y":"+=100"}' data-initial-visibile="false"  draggable="true" class="basket over" id="basketitem" data-loaded-callback="initDraggables"></div>
+                         </div>
                     </li>
                     <li class="step-4" data-complete-shownext ="true">
                         <h2>Step 4</h2>

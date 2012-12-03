@@ -37,6 +37,9 @@ elearning = function(_wrapper){
         if( this.originalState  == null){
              this.originalState = $(this.wrapper).clone(true);
         }
+        
+      //  initDragables();
+        
         this.showStep(0);
     };
     this.toggleButton = function(type){
@@ -81,6 +84,7 @@ elearning = function(_wrapper){
          }
         
         $(current).removeClass('active').fadeOut(300, function(){
+            
            _this.processStep(el);
         });
         
@@ -92,17 +96,16 @@ elearning = function(_wrapper){
     };
     this.showPrevious = function(){
         var el = $(this.wrapper).find('.active').prev();
-        
         return this.showStep($(el).index());
-        
     };
    this.processStep = function(el){
       
-       $(el).addClass('active').fadeIn(300);
-        $(el).find('[data-onload-transition]').each(function(i,e){
-            var loadedStyle = $(this).data("onload-transition");
-            var initialStyle =$(this).data("initial-style");
-            $(this).css(initialStyle).transition(loadedStyle, window['elearning'][$(e).data('loaded-callback')]);    
+        $(el).addClass('active').fadeIn(300);
+        $(el).find('[data-onload-transition]').each(function(i,e){ 
+            
+            var loadedStyle = $(e).data("onload-transition");
+            var initialStyle =$(e).data("initial-style");
+            $(e).css(initialStyle).transition(loadedStyle, window['elearning'][$(e).data('loaded-callback')]);    
         });
     };
     
