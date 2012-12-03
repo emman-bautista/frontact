@@ -2,6 +2,7 @@
 var _app = null;
 var _elearning = null;
 var v = null;
+var cElement = $('<div style="height: 100%; z-index: 1000; position:relative;">This is a sample custom Element inside the popup overlay</div>');
 var pages = {
     "home" : {
         title: "Home",
@@ -25,7 +26,11 @@ var pages = {
             _elearning = new elearning("#elearning-steps");
              /* Extend elearning by adding new functions */
             if($("#videoPlayer_html5_api").length > 0){
-                var config = [
+				//cElement = [].slice.call(cElement);
+                var config = {
+						customElement: cElement,
+						pauseOnPopup: true,
+						callbacks: [
                         {
                         'on': 2,
                         'do':function(){
@@ -42,8 +47,11 @@ var pages = {
                         'do':function(){
                             $(v.getVideoElement()).transit({ width: '100%', height:'100%', marginTop: '0' });
                         }
-                        }];
+                        }]
+						};
                 v = new _vid("videoPlayer_html5_api", config);
+				
+				
             }
         },
         onError : null
@@ -93,7 +101,6 @@ var components = {
 
 $(function(){
     _app = new app(pages, components)
-    //app.init(pages, components);
     _app.beforeTransition = function(page, callback){
            $(page).transition({
             opacity:0, left:-100
